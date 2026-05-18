@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Woody Zhao — Incoming Waterloo EE / Personal Site</title>
+<meta name="description" content="Personal site of Zhengwu (Woody) Zhao — incoming Electrical Engineering student at the University of Waterloo. Self-taught AP Scholar, youth-club leader, builder of small tools." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* =================================================================
+   WOODY ZHAO — PERSONAL SITE
+   aesthetic: warm neo-brutalist editorial
+   palette: cream paper · sumi black · electric cobalt · acid yellow · hot pink
+   type:    Archivo Black (display) · Instrument Serif (editorial italic)
+            DM Mono (technical) · Archivo (body)
+================================================================= */
+
+:root{
+  --paper:#f4ede0;
+  --paper-2:#e9dfc8;
+  --ink:#0a0a0a;
+  --ink-2:#222;
+  --mute:#6a6258;
+  --rule:#0a0a0a;
+  --blue:#2741ff;
+  --yellow:#ffd400;
+  --pink:#ff3d8b;
+  --lime:#9bf25e;
+  --red:#e8341c;
+
+  --display:'Archivo Black', 'Archivo', system-ui, sans-serif;
+  --sans:'Archivo', system-ui, -apple-system, sans-serif;
+  --serif:'Instrument Serif', Georgia, serif;
+  --mono:'DM Mono', ui-monospace, monospace;
+
+  --shadow-sm: 4px 4px 0 var(--ink);
+  --shadow-md: 8px 8px 0 var(--ink);
+  --shadow-lg: 14px 14px 0 var(--ink);
+  --border: 3px solid var(--ink);
+  --border-thin: 2px solid var(--ink);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* dotted grid paper background */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(10,10,10,.18) 1px, transparent 1px);
+  background-size:22px 22px;
+  background-position:0 0;
+  opacity:.55;
+}
+/* subtle paper grain */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .1 0 0 0 0 .09 0 0 0 0 .07 0 0 0 .14 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode:multiply;opacity:.45;
+}
+
+a{color:inherit;text-decoration:none}
+::selection{background:var(--blue);color:var(--paper)}
+
+/* ----------  LAYOUT  ---------- */
+.wrap{position:relative;z-index:2;max-width:1340px;margin:0 auto;padding:24px 32px 80px}
+@media(max-width:760px){.wrap{padding:16px 18px 60px}}
+
+/* ==========  TOP NAV  ========== */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--paper);
+  border:var(--border);
+  box-shadow:var(--shadow-sm);
+  padding:14px 22px;
+  margin-bottom:28px;
+  position:sticky;top:18px;z-index:50;
+}
+.nav .brand{
+  font-family:var(--display);
+  font-size:20px;letter-spacing:-.02em;
+  display:flex;align-items:center;gap:12px;
+}
+.nav .brand .chip{
+  background:var(--ink);color:var(--yellow);
+  font-family:var(--display);font-size:16px;
+  width:34px;height:34px;display:grid;place-items:center;
+  transform:rotate(-4deg);
+  border:2px solid var(--ink);
+}
+.nav .links{display:flex;gap:6px;align-items:center}
+.nav .links a{
+  font-family:var(--mono);font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:8px 12px;border:2px solid transparent;
+  transition:all .15s ease;
+}
+.nav .links a:hover{
+  background:var(--yellow);
+  border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+  transform:translate(-1px,-1px);
+}
+.nav .cta{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);padding:10px 16px;
+  letter-spacing:.08em;border:2px solid var(--ink);
+  transition:all .15s ease;
+}
+.nav .cta:hover{background:var(--blue);box-shadow:4px 4px 0 var(--ink);transform:translate(-2px,-2px)}
+@media(max-width:760px){.nav .links{display:none}.nav{padding:10px 14px}}
+
+/* ==========  STATUS STRIP  ========== */
+.status{
+  display:flex;flex-wrap:wrap;gap:0;
+  border:var(--border);
+  margin-bottom:28px;
+  background:var(--paper);
+  box-shadow:var(--shadow-sm);
+  overflow:hidden;
+}
+.status .cell{
+  flex:1;min-width:160px;
+  padding:10px 16px;border-right:2px solid var(--ink);
+  font-family:var(--mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.1em;
+  display:flex;align-items:center;gap:8px;
+}
+.status .cell:last-child{border-right:0}
+.status .cell.hi{background:var(--lime)}
+.status .cell.lo{color:var(--mute)}
+.status .dot{
+  width:9px;height:9px;background:var(--red);border:1.5px solid var(--ink);
+  border-radius:50%;animation:pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(232,52,28,.7)}
+  50%{box-shadow:0 0 0 7px rgba(232,52,28,0)}
+}
+
+/* ==========  HERO  ========== */
+.hero{
+  display:grid;grid-template-columns: 1.35fr .9fr;
+  gap:28px;align-items:stretch;
+  margin-bottom:36px;
+}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:22px}}
+
+.hero-left{
+  border:var(--border);
+  background:var(--paper);
+  padding:36px 40px 32px;
+  box-shadow:var(--shadow-md);
+  position:relative;overflow:hidden;
+}
+.hero-left .kicker{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  letter-spacing:.16em;color:var(--mute);
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:18px;
+}
+.hero-left .kicker::before{content:"";width:38px;height:2px;background:var(--ink)}
+
+.hero-left h1{
+  font-family:var(--display);
+  font-size:clamp(58px, 10vw, 140px);
+  line-height:.86;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+}
+.hero-left h1 .star{
+  display:inline-block;color:var(--pink);
+  transform:translateY(-.08em) rotate(8deg);
+  font-family:var(--display);
+}
+.hero-left h1 .ital{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  letter-spacing:-.02em;text-transform:none;color:var(--ink);
+}
+.hero-left h1 .uline{
+  background-image:linear-gradient(transparent 78%, var(--yellow) 78%, var(--yellow) 100%);
+  background-size:100% 100%;background-repeat:no-repeat;
+  padding:0 .04em;
+}
+.hero-left .sub{
+  margin-top:24px;font-family:var(--sans);font-size:18.5px;
+  line-height:1.55;max-width:46ch;color:var(--ink-2);
+}
+.hero-left .sub b{font-weight:700}
+.hero-left .sub .pop{background:var(--blue);color:var(--paper);padding:0 6px;font-weight:700}
+.hero-left .sub em{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.05em}
+
+.hero-left .row{
+  margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;
+}
+.btn{
+  font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.08em;
+  padding:13px 18px;border:var(--border);background:var(--paper);color:var(--ink);
+  box-shadow:var(--shadow-sm);cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn.primary{background:var(--blue);color:var(--paper)}
+.btn.warn{background:var(--yellow);color:var(--ink)}
+.btn .arrow{font-family:var(--display);font-size:14px}
+
+/* corner sticker */
+.hero-left .stamp{
+  position:absolute;top:18px;right:-10px;
+  background:var(--red);color:var(--paper);
+  font-family:var(--display);font-size:13px;
+  padding:8px 14px;letter-spacing:.04em;
+  transform:rotate(8deg);
+  border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+/* ----- avatar card ----- */
+.hero-right{
+  display:flex;flex-direction:column;gap:18px;
+}
+.avatar-card{
+  position:relative;
+  border:var(--border);background:var(--paper);
+  box-shadow:var(--shadow-md);
+  padding:18px 18px 12px;
+  transform:rotate(2deg);
+  transition:transform .25s ease;
+}
+.avatar-card:hover{transform:rotate(-1deg)}
+.avatar-card .frame{
+  background:repeating-linear-gradient(45deg,var(--paper-2),var(--paper-2) 6px,var(--paper) 6px,var(--paper) 12px);
+  border:var(--border-thin);
+  padding:10px;position:relative;overflow:hidden;
+}
+.avatar-card .frame img{
+  display:block;width:100%;height:auto;border:var(--border-thin);
+  background:var(--paper);
+}
+.avatar-card .frame .grunge{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 20% 0%, rgba(10,10,10,.18), transparent 60%),
+             radial-gradient(ellipse at 100% 100%, rgba(10,10,10,.12), transparent 50%);
+  mix-blend-mode:multiply;
+}
+.avatar-card .meta{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:10px;font-family:var(--mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--ink-2);
+}
+.avatar-card .meta .name{font-family:var(--display);text-transform:uppercase;font-size:13px;color:var(--ink)}
+.avatar-card .pin{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  width:24px;height:24px;border-radius:50%;
+  background:var(--pink);border:2px solid var(--ink);
+  box-shadow:0 2px 0 rgba(0,0,0,.25);
+}
+.avatar-card .tape{
+  position:absolute;width:90px;height:24px;
+  background:rgba(255,212,0,.85);
+  border:2px solid rgba(10,10,10,.4);
+  top:-12px;right:-18px;
+  transform:rotate(20deg);
+  background-image:repeating-linear-gradient(90deg,transparent 0 8px, rgba(10,10,10,.07) 8px 9px);
+}
+
+.id-card{
+  border:var(--border);background:var(--yellow);
+  padding:14px 18px;box-shadow:var(--shadow-sm);
+  display:grid;grid-template-columns:auto 1fr;gap:6px 18px;
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;
+  transform:rotate(-1.2deg);
+}
+.id-card dt{color:var(--ink-2);font-weight:500}
+.id-card dd{color:var(--ink);font-weight:700;text-align:right}
+.id-card .row-head{
+  grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--display);font-size:14px;letter-spacing:.04em;
+  border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:4px;
+}
+.id-card .row-head .barcode{
+  display:flex;gap:1.5px;
+}
+.id-card .row-head .barcode i{display:block;width:2px;height:14px;background:var(--ink)}
+.id-card .row-head .barcode i:nth-child(2n){width:1px;height:11px}
+.id-card .row-head .barcode i:nth-child(3n){width:3px}
+
+/* ==========  MARQUEE  ========== */
+.marquee{
+  border-top:var(--border);border-bottom:var(--border);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--display);font-size:36px;
+  text-transform:uppercase;letter-spacing:-.01em;
+  padding:14px 0;
+  overflow:hidden;white-space:nowrap;
+  margin-bottom:48px;position:relative;
+}
+.marquee .track{
+  display:inline-flex;gap:30px;
+  animation:scroll 28s linear infinite;
+  padding-left:30px;
+}
+.marquee .track span{display:inline-flex;align-items:center;gap:30px}
+.marquee .track .dot{
+  width:18px;height:18px;background:var(--yellow);border-radius:50%;display:inline-block;
+}
+.marquee .track .star{color:var(--pink);font-family:var(--display)}
+.marquee .track .ital{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em}
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* ==========  SECTION HEAD  ========== */
+.sec{margin-top:64px;position:relative;z-index:2}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:24px;gap:24px;flex-wrap:wrap;
+}
+.sec-head h2{
+  font-family:var(--display);font-size:clamp(40px,6vw,84px);
+  letter-spacing:-.035em;line-height:.9;text-transform:uppercase;
+}
+.sec-head h2 .ital{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em}
+.sec-head h2 .num{
+  display:inline-block;background:var(--ink);color:var(--yellow);
+  padding:2px 10px;margin-right:14px;
+  font-size:.6em;vertical-align:.18em;
+  transform:rotate(-3deg);
+}
+.sec-head .tag{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--ink-2);
+  border-bottom:2px solid var(--ink);padding-bottom:6px;
+}
+
+/* ==========  ABOUT  ========== */
+.about{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:24px;
+}
+@media(max-width:900px){.about{grid-template-columns:1fr}}
+.about .card{
+  border:var(--border);background:var(--paper);
+  padding:28px 30px;box-shadow:var(--shadow-md);
+}
+.about .card h3{
+  font-family:var(--display);font-size:24px;text-transform:uppercase;
+  letter-spacing:-.01em;margin-bottom:14px;
+}
+.about .card p{font-size:17px;line-height:1.65;color:var(--ink-2)}
+.about .card p + p{margin-top:14px}
+.about .card p em{font-family:var(--serif);font-style:italic;font-size:1.05em;color:var(--ink)}
+.about .card p .hl{background:var(--yellow);padding:0 4px}
+
+.about .stack{display:flex;flex-direction:column;gap:18px}
+.stat-card{
+  border:var(--border);padding:18px 20px;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:13px;text-transform:uppercase;
+  letter-spacing:.1em;
+  transition:transform .15s, box-shadow .15s;
+}
+.stat-card:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow-sm)}
+.stat-card .lab{color:var(--ink-2)}
+.stat-card .val{
+  font-family:var(--display);font-size:18px;letter-spacing:-.01em;
+}
+.stat-card.b1{background:var(--blue);color:var(--paper)}
+.stat-card.b1 .lab,.stat-card.b1 .val{color:var(--paper)}
+.stat-card.b2{background:var(--yellow)}
+.stat-card.b3{background:var(--paper)}
+.stat-card.b4{background:var(--pink);color:var(--paper)}
+.stat-card.b4 .lab,.stat-card.b4 .val{color:var(--paper)}
+
+/* ==========  PROJECTS  ========== */
+.projects{
+  display:grid;grid-template-columns:repeat(6, 1fr);
+  gap:20px;
+}
+@media(max-width:1100px){.projects{grid-template-columns:repeat(4, 1fr)}}
+@media(max-width:760px){.projects{grid-template-columns:repeat(2, 1fr);gap:16px}}
+
+.proj{
+  border:var(--border);background:var(--paper);
+  box-shadow:var(--shadow-md);padding:24px;
+  position:relative;
+  transition:transform .15s ease, box-shadow .15s ease;
+  display:flex;flex-direction:column;gap:14px;
+  min-height:280px;
+}
+.proj:hover{transform:translate(6px,6px);box-shadow:2px 2px 0 var(--ink)}
+.proj.featured{grid-column:span 4;background:var(--blue);color:var(--paper)}
+.proj.featured h3{color:var(--paper)}
+.proj.featured .desc{color:rgba(244,237,224,.95)}
+.proj.featured .tag{background:rgba(255,255,255,.15);color:var(--paper);border-color:rgba(255,255,255,.5)}
+.proj.featured .num{background:var(--yellow);color:var(--ink)}
+.proj.featured .meta{color:rgba(244,237,224,.8)}
+.proj.span-2{grid-column:span 2}
+.proj.span-3{grid-column:span 3}
+.proj.span-4{grid-column:span 4}
+@media(max-width:1100px){.proj.featured,.proj.span-4{grid-column:span 4}.proj.span-3{grid-column:span 2}}
+@media(max-width:760px){.proj.featured,.proj.span-4,.proj.span-3,.proj.span-2{grid-column:span 2}}
+
+.proj .top{display:flex;justify-content:space-between;align-items:flex-start}
+.proj .num{
+  font-family:var(--display);font-size:12px;
+  padding:4px 8px;background:var(--ink);color:var(--yellow);
+  letter-spacing:.04em;
+}
+.proj .live{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);
+  display:flex;align-items:center;gap:6px;
+}
+.proj.featured .live{color:rgba(244,237,224,.85)}
+.proj .live i{width:7px;height:7px;background:var(--lime);border-radius:50%;display:inline-block;border:1.5px solid var(--ink)}
+.proj .live.coming i{background:var(--paper);border-style:dashed}
+
+.proj h3{
+  font-family:var(--display);font-size:30px;
+  line-height:.95;letter-spacing:-.025em;
+  text-transform:uppercase;color:var(--ink);
+}
+.proj.span-2 h3{font-size:22px}
+.proj h3 .ital{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em}
+.proj h3 .uline{
+  background-image:linear-gradient(transparent 76%, var(--yellow) 76%, var(--yellow) 100%);
+}
+.proj.featured h3 .uline{
+  background-image:linear-gradient(transparent 76%, var(--pink) 76%, var(--pink) 100%);
+}
+
+.proj .desc{font-size:15px;line-height:1.55;color:var(--ink-2);flex-grow:1}
+.proj .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.proj .tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;border:2px solid var(--ink);
+  padding:3px 8px;background:var(--paper);
+}
+.proj .meta{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--ink-2);
+  border-top:2px solid var(--ink);padding-top:10px;
+}
+.proj.featured .meta{border-top-color:rgba(244,237,224,.45)}
+.proj .meta .go{font-family:var(--display);font-size:18px}
+
+/* ==========  SKILLS  ========== */
+.skills{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+@media(max-width:760px){.skills{grid-template-columns:repeat(2,1fr)}}
+.skill{
+  border:var(--border);padding:20px;
+  box-shadow:var(--shadow-sm);background:var(--paper);
+  transition:transform .15s, box-shadow .15s;
+  position:relative;
+}
+.skill:hover{transform:translate(-3px,-3px);box-shadow:7px 7px 0 var(--ink)}
+.skill:nth-child(1){background:var(--yellow)}
+.skill:nth-child(2){background:var(--paper);transform:rotate(-1deg)}
+.skill:nth-child(2):hover{transform:rotate(-1deg) translate(-3px,-3px)}
+.skill:nth-child(3){background:var(--lime);transform:rotate(1deg)}
+.skill:nth-child(3):hover{transform:rotate(1deg) translate(-3px,-3px)}
+.skill:nth-child(4){background:var(--pink);color:var(--paper)}
+.skill:nth-child(4) h4,.skill:nth-child(4) .n{color:var(--paper)}
+.skill:nth-child(4) li{color:rgba(244,237,224,.95)}
+.skill:nth-child(4) li::before{background:var(--paper)}
+
+.skill .n{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  color:var(--ink-2);text-transform:uppercase;
+}
+.skill h4{
+  font-family:var(--display);font-size:22px;letter-spacing:-.01em;
+  text-transform:uppercase;margin-top:6px;margin-bottom:12px;
+}
+.skill ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.skill li{
+  font-family:var(--mono);font-size:13px;color:var(--ink-2);
+  padding-left:16px;position:relative;line-height:1.4;
+}
+.skill li::before{
+  content:"";position:absolute;left:0;top:.55em;
+  width:8px;height:8px;background:var(--ink);
+}
+
+/* ==========  HONORS  ========== */
+.honors{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+@media(max-width:900px){.honors{grid-template-columns:1fr}}
+.honor{
+  position:relative;padding:32px 28px 26px;
+  border:var(--border);box-shadow:var(--shadow-md);
+  display:flex;flex-direction:column;gap:14px;
+  min-height:280px;overflow:hidden;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.honor:hover{transform:translate(-4px,-4px);box-shadow:14px 14px 0 var(--ink)}
+.honor.h1{background:var(--blue);color:var(--paper);transform:rotate(-1deg)}
+.honor.h1:hover{transform:rotate(-1deg) translate(-4px,-4px)}
+.honor.h2{background:var(--yellow);color:var(--ink)}
+.honor.h3{background:var(--paper);color:var(--ink);transform:rotate(1.2deg)}
+.honor.h3:hover{transform:rotate(1.2deg) translate(-4px,-4px)}
+
+.honor .hbadge{
+  position:absolute;top:-14px;right:-14px;
+  width:80px;height:80px;border-radius:50%;
+  background:var(--paper);color:var(--ink);
+  border:var(--border);
+  display:grid;place-items:center;
+  font-family:var(--display);font-size:34px;
+  transform:rotate(8deg);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.honor.h1 .hbadge{background:var(--yellow);color:var(--ink)}
+.honor.h2 .hbadge{background:var(--ink);color:var(--yellow)}
+.honor.h3 .hbadge{background:var(--pink);color:var(--paper);font-size:26px;letter-spacing:-.04em}
+
+.honor .hwhen{
+  font-family:var(--mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.14em;
+  opacity:.8;
+}
+.honor.h1 .hwhen{color:rgba(244,237,224,.85)}
+
+.honor h3{
+  font-family:var(--display);font-size:28px;
+  line-height:1;letter-spacing:-.025em;text-transform:uppercase;
+}
+.honor h3 .ital{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em}
+
+.honor .hbody{
+  font-size:15px;line-height:1.5;
+  flex-grow:1;
+}
+.honor.h1 .hbody{color:rgba(244,237,224,.95)}
+.honor.h2 .hbody, .honor.h3 .hbody{color:var(--ink-2)}
+.honor .hbody strong{font-weight:800}
+
+.honor .hfoot{
+  font-family:var(--mono);font-size:12px;letter-spacing:.18em;
+  text-transform:uppercase;
+  border-top:2px solid currentColor;
+  padding-top:10px;
+  opacity:.95;
+}
+.honor.h1 .hfoot{border-top-color:rgba(244,237,224,.5)}
+
+/* ==========  EXPERIENCE TIMELINE  ========== */
+.timeline{
+  border:var(--border);background:var(--paper);
+  box-shadow:var(--shadow-md);
+}
+.tl-row{
+  display:grid;grid-template-columns:160px 1fr 1fr;gap:0;
+  border-bottom:2px solid var(--ink);
+}
+.tl-row:last-child{border-bottom:0}
+.tl-row > div{padding:24px 22px;border-right:2px solid var(--ink)}
+.tl-row > div:last-child{border-right:0}
+@media(max-width:760px){
+  .tl-row{grid-template-columns:1fr}
+  .tl-row > div{border-right:0;border-bottom:2px solid var(--ink)}
+  .tl-row > div:last-child{border-bottom:0}
+}
+.tl-when{
+  font-family:var(--display);font-size:18px;
+  background:var(--ink);color:var(--yellow);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;letter-spacing:-.01em;
+  flex-direction:column;gap:6px;
+}
+.tl-when .label{
+  font-family:var(--mono);font-size:10px;color:var(--paper);
+  letter-spacing:.14em;font-weight:400;
+}
+.tl-main h4{
+  font-family:var(--display);font-size:22px;letter-spacing:-.015em;
+  line-height:1.05;text-transform:uppercase;
+}
+.tl-main h4 .ital{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;color:var(--blue)}
+.tl-main .loc{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mute);margin-top:8px;
+}
+.tl-desc{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.tl-row.ed .tl-when{background:var(--blue);color:var(--paper)}
+.tl-row.ed .tl-when .label{color:rgba(244,237,224,.8)}
+
+/* ==========  CONTACT  ========== */
+.contact{
+  border:var(--border);background:var(--ink);color:var(--paper);
+  padding:48px 44px 36px;box-shadow:var(--shadow-lg);
+  position:relative;overflow:hidden;
+}
+.contact h2{
+  font-family:var(--display);font-size:clamp(48px,8vw,128px);
+  letter-spacing:-.04em;line-height:.88;text-transform:uppercase;
+  color:var(--paper);
+}
+.contact h2 .ital{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--yellow);text-transform:none;letter-spacing:-.02em}
+.contact h2 .star{display:inline-block;color:var(--pink);transform:rotate(12deg)}
+
+.contact .lede{
+  margin-top:18px;font-size:18px;max-width:50ch;line-height:1.5;
+  color:rgba(244,237,224,.85);
+}
+.contact .lede em{font-family:var(--serif);font-style:italic;font-size:1.06em;color:var(--yellow)}
+
+.contact-grid{
+  margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+@media(max-width:900px){.contact-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.contact-grid{grid-template-columns:1fr}}
+
+.ctt{
+  display:flex;flex-direction:column;justify-content:space-between;
+  background:var(--paper);color:var(--ink);
+  border:3px solid var(--paper);
+  padding:20px 22px;min-height:160px;
+  transition:transform .15s, box-shadow .15s;
+  cursor:pointer;position:relative;
+}
+.ctt:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--pink)}
+.ctt .lab{
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--mute);
+}
+.ctt .val{
+  font-family:var(--display);font-size:22px;letter-spacing:-.015em;
+  text-transform:uppercase;line-height:1;margin-top:10px;
+  word-break:break-word;
+}
+.ctt .val.email{font-size:18px;text-transform:none;letter-spacing:0;font-family:var(--mono);font-weight:500}
+.ctt .arr{
+  font-family:var(--display);font-size:24px;align-self:flex-end;color:var(--ink);
+}
+.ctt.email-card{background:var(--yellow)}
+.ctt.email-card:hover{box-shadow:6px 6px 0 var(--blue)}
+.ctt.github{background:var(--pink);color:var(--paper)}
+.ctt.github .lab{color:rgba(244,237,224,.75)}
+.ctt.github .arr{color:var(--paper)}
+.ctt.github:hover{box-shadow:6px 6px 0 var(--yellow)}
+.ctt.linkedin{background:var(--blue);color:var(--paper)}
+.ctt.linkedin .lab{color:rgba(244,237,224,.75)}
+.ctt.linkedin .arr{color:var(--paper)}
+.ctt.linkedin:hover{box-shadow:6px 6px 0 var(--yellow)}
+
+.contact .scribble{
+  position:absolute;right:30px;top:30px;
+  font-family:var(--serif);font-style:italic;font-size:18px;
+  color:var(--yellow);transform:rotate(-6deg);
+  border:2px solid var(--yellow);padding:6px 14px;
+}
+
+/* ==========  FOOTER  ========== */
+footer{
+  margin-top:40px;padding-top:22px;
+  border-top:var(--border-thin);
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:11px;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--ink-2);
+  flex-wrap:wrap;gap:12px;
+}
+footer .heart{color:var(--red)}
+
+/* ==========  ENTRANCE ANIMATIONS  ========== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.06s}
+.reveal.d2{transition-delay:.12s}
+.reveal.d3{transition-delay:.18s}
+.reveal.d4{transition-delay:.24s}
+.reveal.d5{transition-delay:.3s}
+
+/* hero word stagger */
+.h1-line{display:block;overflow:hidden}
+.h1-line .w{display:inline-block;transform:translateY(110%);animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
+.h1-line .w.d1{animation-delay:.08s}
+.h1-line .w.d2{animation-delay:.16s}
+.h1-line .w.d3{animation-delay:.24s}
+@keyframes rise{to{transform:translateY(0)}}
+
+/* scrollbar */
+::-webkit-scrollbar{width:14px;height:14px}
+::-webkit-scrollbar-track{background:var(--paper-2);border-left:2px solid var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--ink);border:3px solid var(--paper-2)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ==========  NAV  ========== -->
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <span class="chip">趙</span>
+      <span>WOODY ZHAO</span>
+    </a>
+    <div class="links">
+      <a href="#about">01 · About</a>
+      <a href="#projects">02 · Projects</a>
+      <a href="#skills">03 · Toolkit</a>
+      <a href="#honors">04 · Honors</a>
+      <a href="#experience">05 · Field Notes</a>
+    </div>
+    <a class="cta" href="mailto:woodyzhao1004@gmail.com">Say Hi →</a>
+  </nav>
+
+  <!-- ==========  STATUS  ========== -->
+  <div class="status">
+    <div class="cell hi"><span class="dot"></span> Open To Connect · Co-op '27</div>
+    <div class="cell">Surrey · BC · Canada</div>
+    <div class="cell lo">EE · Class of '31</div>
+    <div class="cell lo">Last update · May 2026</div>
+  </div>
+
+  <!-- ==========  HERO  ========== -->
+  <section class="hero" id="top">
+    <div class="hero-left">
+      <div class="kicker">Personal Site · Vol.01 / Issue 03</div>
+
+      <h1>
+        <span class="h1-line"><span class="w">HEY,</span></span>
+        <span class="h1-line"><span class="w d1">I'M</span> <span class="w d2 ital">Woody</span></span>
+        <span class="h1-line"><span class="w d3 uline">ZHAO</span><span class="w d3 star">★</span></span>
+      </h1>
+
+      <p class="sub">
+        Incoming <b>Electrical Engineering</b> student at the
+        <span class="pop">University of Waterloo</span> — Class of '31. I thrive
+        where the curve is steepest. My formula is simple:
+        <em>extreme discipline + rapid adaptation</em>. AP Scholar with
+        Distinction off six self-studied exams; youth-club leader who
+        raised <b>$4,000+</b> for Surrey Memorial Hospital.
+      </p>
+
+      <div class="row">
+        <a class="btn primary" href="#projects">See Projects <span class="arrow">→</span></a>
+        <a class="btn warn" href="mailto:woodyzhao1004@gmail.com">Email Me <span class="arrow">↗</span></a>
+        <a class="btn" href="https://github.com/Woodz-ZZW" target="_blank" rel="noopener">GitHub <span class="arrow">↗</span></a>
+      </div>
+
+      <div class="stamp">★ EE / 26 ★</div>
+    </div>
+
+    <aside class="hero-right">
+      <div class="avatar-card">
+        <span class="pin"></span>
+        <span class="tape"></span>
+        <div class="frame">
+          <img src="avatar.png" alt="Cartoon portrait of Woody Zhao" />
+          <span class="grunge"></span>
+        </div>
+        <div class="meta">
+          <span class="name">ZHENGWU · 趙鄭武</span>
+          <span>ID · WZ-2026</span>
+        </div>
+      </div>
+
+      <dl class="id-card">
+        <div class="row-head">
+          <span>STUDENT FILE</span>
+          <span class="barcode">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </span>
+        </div>
+        <dt>Major</dt><dd>EE · BASc</dd>
+        <dt>Cohort</dt><dd>'26 → '31</dd>
+        <dt>AP Score</dt><dd>5 / 5 / 5 · ×6</dd>
+        <dt>HS Avg</dt><dd>98% · Top-6</dd>
+        <dt>Native</dt><dd>EN · 中文</dd>
+        <dt>Status</dt><dd>Incoming</dd>
+      </dl>
+    </aside>
+  </section>
+
+  <!-- ==========  MARQUEE  ========== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>AP SCHOLAR <em class="ital">w/</em> DISTINCTION</span><span class="dot"></span>
+      <span>WATERLOO EE '31</span><span class="star">★</span>
+      <span><em class="ital">six</em> 5s · six APs · zero classroom</span><span class="dot"></span>
+      <span>FERMAT <em class="ital">distinction</em></span><span class="star">★</span>
+      <span>SAY HI <em class="ital">→</em> WOODYZHAO1004@GMAIL.COM</span><span class="dot"></span>
+      <span>AP SCHOLAR <em class="ital">w/</em> DISTINCTION</span><span class="dot"></span>
+      <span>WATERLOO EE '31</span><span class="star">★</span>
+      <span><em class="ital">six</em> 5s · six APs · zero classroom</span><span class="dot"></span>
+      <span>FERMAT <em class="ital">distinction</em></span><span class="star">★</span>
+      <span>SAY HI <em class="ital">→</em> WOODYZHAO1004@GMAIL.COM</span><span class="dot"></span>
+    </div>
+  </div>
+
+  <!-- ==========  ABOUT  ========== -->
+  <section class="sec" id="about">
+    <div class="sec-head reveal">
+      <h2><span class="num">01</span><span class="ital">About</span> the kid</h2>
+      <span class="tag">Brief Letter From The Editor</span>
+    </div>
+
+    <div class="about">
+      <div class="card reveal d1">
+        <h3>Extreme discipline + rapid adaptation.</h3>
+        <p>
+          That formula is how I grow. Over the past year I proved it on myself:
+          I self-studied <span class="hl">six AP exams</span> with no classroom —
+          Calculus BC, Physics 1, Computer Science A, Statistics, Macro &amp;
+          Micro Econ — and scored a <em>5 on every one</em>. AP awarded me the
+          title of <span class="hl">Scholar with Distinction</span>.
+        </p>
+        <p>
+          Outside the desk I lead <em>BE YOU T.H.R.I.V.E</em>, a non-profit
+          student org. We planned a badminton fundraiser with the Surrey
+          Hospitals Foundation and donated <span class="hl">$4,000+</span> to
+          Surrey Memorial Hospital. I'm also Junior Instructor at
+          <em>UBC Geering Up</em> — explaining science to a room of Grade-1
+          "Miniminds" turns out to be the best engineering teacher I've had.
+        </p>
+        <p>
+          In <em>Fall 2026</em> I'm joining the
+          <span class="hl">University of Waterloo's Electrical Engineering</span>
+          program. Until then this page is a quiet workshop — half journal,
+          half index.
+        </p>
+      </div>
+
+      <div class="stack">
+        <div class="stat-card b1 reveal d2">
+          <span class="lab">Based In</span>
+          <span class="val">Surrey, BC</span>
+        </div>
+        <div class="stat-card b2 reveal d3">
+          <span class="lab">Top Skills</span>
+          <span class="val">Fast Learning · Resilience</span>
+        </div>
+        <div class="stat-card b3 reveal d4">
+          <span class="lab">Languages</span>
+          <span class="val">English · 中文</span>
+        </div>
+        <div class="stat-card b4 reveal d5">
+          <span class="lab">Off-Desk</span>
+          <span class="val">Tennis Club · Badminton</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========  PROJECTS  ========== -->
+  <section class="sec" id="projects">
+    <div class="sec-head reveal">
+      <h2><span class="num">02</span><span class="ital">Selected</span> Builds</h2>
+      <span class="tag">Things I made · Some shipped</span>
+    </div>
+
+    <div class="projects">
+
+      <!-- Featured: real GitHub project -->
+      <a class="proj featured reveal" href="https://github.com/Woodz-ZZW/linkedin-auto-message-skill" target="_blank" rel="noopener">
+        <div class="top">
+          <span class="num">No. 01 · FEATURED</span>
+          <span class="live"><i></i> Public on GitHub</span>
+        </div>
+        <h3>
+          <span class="ital">LinkedIn</span>
+          <span class="uline">Auto-Message</span>
+          Skill
+        </h3>
+        <p class="desc">
+          A Claude Code skill that drafts and dispatches personalised cold
+          messages to a list of LinkedIn connections — browser automation,
+          parallel agents, and templated outreach. Built for the awkward part
+          of networking that everyone postpones.
+        </p>
+        <div class="tags">
+          <span class="tag">Claude Skill</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Playwright</span>
+          <span class="tag">MCP</span>
+          <span class="tag">Automation</span>
+        </div>
+        <div class="meta">
+          <span>SOLO · DESIGN · CODE · QA</span>
+          <span class="go">github.com/Woodz-ZZW →</span>
+        </div>
+      </a>
+
+      <!-- Personal website (this one!) -->
+      <div class="proj span-3 reveal d1">
+        <div class="top">
+          <span class="num">No. 02</span>
+          <span class="live"><i></i> You are here</span>
+        </div>
+        <h3>This <span class="uline">Site</span> <span class="ital">— vibe-coding</span></h3>
+        <p class="desc">
+          A neo-brutalist personal site, vibe-coded end-to-end. No frameworks,
+          no templates, no Inter. Type set in Archivo Black + Instrument
+          Serif; remixed from a reference design and built by feel.
+        </p>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Design</span><span class="tag">No-Framework</span>
+        </div>
+        <div class="meta"><span>2026 · SOLO</span><span class="go">↻ live</span></div>
+      </div>
+
+      <!-- Self-study journey framed as a project -->
+      <div class="proj span-3 reveal d2">
+        <div class="top">
+          <span class="num">No. 03</span>
+          <span class="live"><i></i> Shipped</span>
+        </div>
+        <h3>Six <span class="uline">APs</span>, <span class="ital">no</span> classroom</h3>
+        <p class="desc">
+          A twelve-month solo study sprint: Calculus BC, Physics 1, CS A,
+          Statistics, Macroeconomics, Microeconomics — all self-taught, all
+          5/5. AP awarded me <em>Scholar with Distinction</em> in July 2025.
+          A useful proof that I can run my own learning curve.
+        </p>
+        <div class="tags">
+          <span class="tag">Self-Study</span><span class="tag">Math</span>
+          <span class="tag">CS</span><span class="tag">Physics</span><span class="tag">Econ</span>
+        </div>
+        <div class="meta"><span>2024 → 2025 · SOLO</span><span class="go">5 · 5 · 5 · 5 · 5 · 5</span></div>
+      </div>
+
+      <!-- Real community project -->
+      <div class="proj span-4 reveal d3">
+        <div class="top">
+          <span class="num">No. 04</span>
+          <span class="live"><i></i> Ongoing · Real-world</span>
+        </div>
+        <h3>BE YOU <span class="ital">T.H.R.I.V.E</span> <span class="uline">Fundraiser</span></h3>
+        <p class="desc">
+          Co-led a student-run non-profit and organised a community badminton
+          competition with the Surrey Hospitals Foundation. We turned a single
+          weekend into <em>over $4,000</em> donated to Surrey Memorial Hospital
+          — child-medical programs and local outreach. Logistics, sponsorship,
+          volunteer coordination, the awkward emails. All of it.
+        </p>
+        <div class="tags">
+          <span class="tag">Leadership</span><span class="tag">Non-Profit</span>
+          <span class="tag">Events</span><span class="tag">Community</span>
+        </div>
+        <div class="meta"><span>JUN 2025 → PRESENT · SURREY, BC</span><span class="go">$4K+ raised</span></div>
+      </div>
+
+      <!-- UBC Geering Up -->
+      <div class="proj span-2 reveal d4">
+        <div class="top">
+          <span class="num">No. 05</span>
+          <span class="live"><i></i> Aug 2025</span>
+        </div>
+        <h3><span class="ital">Mini</span>minds</h3>
+        <p class="desc">
+          Junior Instructor at UBC Geering Up. Taught a Grade-1 class to make
+          harmonicas and chase first science ideas. Patience, small words, big
+          payoff.
+        </p>
+        <div class="tags">
+          <span class="tag">Teaching</span><span class="tag">UBC</span>
+        </div>
+        <div class="meta"><span>UBC OUTREACH</span><span class="go">↗</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========  SKILLS  ========== -->
+  <section class="sec" id="skills">
+    <div class="sec-head reveal">
+      <h2><span class="num">03</span><span class="ital">Toolkit</span></h2>
+      <span class="tag">Things I Reach For Daily</span>
+    </div>
+
+    <div class="skills">
+      <div class="skill reveal">
+        <span class="n">03.01 · Core</span>
+        <h4>Mind</h4>
+        <ul>
+          <li>Fast Learning</li>
+          <li>Resiliency</li>
+          <li>Self-Directed Study</li>
+          <li>Top-6 HS Avg · 98%</li>
+        </ul>
+      </div>
+      <div class="skill reveal d1">
+        <span class="n">03.02 · Code</span>
+        <h4>Programming</h4>
+        <ul>
+          <li>Python</li>
+          <li>Java (AP CS A · 5)</li>
+          <li>Node.js · Playwright</li>
+          <li>Claude Code · MCP</li>
+        </ul>
+      </div>
+      <div class="skill reveal d2">
+        <span class="n">03.03 · People</span>
+        <h4>Leadership</h4>
+        <ul>
+          <li>Team Leadership</li>
+          <li>Teaching (Grade 1 → 11)</li>
+          <li>Event organising</li>
+          <li>Non-profit ops</li>
+        </ul>
+      </div>
+      <div class="skill reveal d3">
+        <span class="n">03.04 · Languages</span>
+        <h4>Bilingual</h4>
+        <ul>
+          <li>English · pro</li>
+          <li>中文 · native</li>
+          <li>Tennis (club)</li>
+          <li>Badminton (events)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========  HONORS  ========== -->
+  <section class="sec" id="honors">
+    <div class="sec-head reveal">
+      <h2><span class="num">04</span><span class="ital">Honors</span></h2>
+      <span class="tag">Verifiable Receipts</span>
+    </div>
+
+    <div class="honors">
+      <div class="honor h1 reveal d1">
+        <div class="hbadge">★</div>
+        <div class="hwhen">JUL 2025</div>
+        <h3>AP Scholar <span class="ital">w/</span> Distinction</h3>
+        <p class="hbody">
+          Awarded by the College Board after self-studying six AP exams
+          (Calculus BC, Physics 1, CS A, Statistics, Macro &amp; Micro
+          Economics) and scoring a 5 on every one.
+        </p>
+        <div class="hfoot">5 · 5 · 5 · 5 · 5 · 5</div>
+      </div>
+
+      <div class="honor h2 reveal d2">
+        <div class="hbadge">∑</div>
+        <div class="hwhen">MAR 2024</div>
+        <h3>Fermat Contest <span class="ital">— Distinction</span></h3>
+        <p class="hbody">
+          University of Waterloo CEMC — Certificate of Distinction.
+          Top 25% of <strong>19,644</strong> Canadian students.
+        </p>
+        <div class="hfoot">CEMC · 2024</div>
+      </div>
+
+      <div class="honor h3 reveal d3">
+        <div class="hbadge">98</div>
+        <div class="hwhen">'22 → '26</div>
+        <h3>Top-6 <span class="ital">Average</span> · 98%</h3>
+        <p class="hbody">
+          Johnston Heights Secondary — Dogwood Diploma, June 2026. Sustained
+          academic discipline across four years.
+        </p>
+        <div class="hfoot">JOHNSTON HEIGHTS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========  EXPERIENCE  ========== -->
+  <section class="sec" id="experience">
+    <div class="sec-head reveal">
+      <h2><span class="num">05</span><span class="ital">Field</span> Notes</h2>
+      <span class="tag">Reverse Chronological</span>
+    </div>
+
+    <div class="timeline reveal d1">
+
+      <div class="tl-row ed">
+        <div class="tl-when">
+          <span class="label">FALL</span>
+          2026 → 2031
+        </div>
+        <div class="tl-main">
+          <h4>B.A.Sc. Electrical Engineering<br><span class="ital">University of Waterloo</span></h4>
+          <div class="loc">Waterloo · Ontario · CA</div>
+        </div>
+        <div class="tl-desc">
+          Incoming. Plan: lean into the intersection of hardware, innovation,
+          and rapid problem-solving. Open to co-op cycles on hardware-adjacent
+          teams from cycle 2 onward.
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">
+          <span class="label">JUN 2025</span>
+          PRESENT
+        </div>
+        <div class="tl-main">
+          <h4>Leader<br><span class="ital">BE YOU T.H.R.I.V.E Youth Club Association</span></h4>
+          <div class="loc">Surrey, BC · Hybrid · 1+ yr</div>
+        </div>
+        <div class="tl-desc">
+          One of the leaders of a student-run non-profit. Planned a community
+          badminton fundraiser with the Surrey Hospitals Foundation; donated
+          <strong>$4,000+</strong> to Surrey Memorial Hospital for children's
+          medical programs.
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">
+          <span class="label">AUG</span>
+          2025
+        </div>
+        <div class="tl-main">
+          <h4>Junior Instructor<br><span class="ital">UBC Geering Up — Engineering Outreach</span></h4>
+          <div class="loc">South Surrey · On-site</div>
+        </div>
+        <div class="tl-desc">
+          Supported a Grade-1 class — UBC's "Miniminds" summer camp. Built
+          teaching materials, joined daily briefings, co-designed a
+          harmonica-making activity. Learned patience the way you learn it:
+          slowly, in front of 6-year-olds.
+        </div>
+      </div>
+
+      <div class="tl-row ed">
+        <div class="tl-when">
+          <span class="label">2022 → 26</span>
+          DOGWOOD
+        </div>
+        <div class="tl-main">
+          <h4>Johnston Heights Secondary<br><span class="ital">Surrey · Tennis Club</span></h4>
+          <div class="loc">Grade · 98% · Top-6 avg</div>
+        </div>
+        <div class="tl-desc">
+          Graduating June 2026 with a top-6 average of 98%. Tennis Club member.
+          Self-taught six AP exams in parallel (5/5 on each), and earned the
+          Fermat Contest 2024 Certificate of Distinction (top 25% of 19,644
+          Canadian students).
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-when">
+          <span class="label">JUL 24</span>
+          FEB 25
+        </div>
+        <div class="tl-main">
+          <h4>Bronze Award<br><span class="ital">Duke of Edinburgh's Int'l Award</span></h4>
+          <div class="loc">Vancouver Davis College</div>
+        </div>
+        <div class="tl-desc">
+          A self-development program across Physical Recreation, Skills,
+          Volunteering, and an Expedition leg. Forced me to build the
+          resilience and discipline that the academic side rewards.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========  CONTACT  ========== -->
+  <section class="sec" id="contact">
+    <div class="contact">
+      <span class="scribble">P.S. coffee accepted ☕</span>
+      <h2>
+        Let's <span class="ital">build</span><br>
+        something <span class="star">★</span>
+      </h2>
+      <p class="lede">
+        Have a <em>co-op opening</em>, a hardware idea you want a second pair
+        of eyes on, or a circuit worth nerding out about? My inbox is open.
+      </p>
+
+      <div class="contact-grid">
+        <a class="ctt email-card" href="mailto:woodyzhao1004@gmail.com">
+          <div>
+            <div class="lab">01 · Email (Preferred)</div>
+            <div class="val email">woodyzhao1004@gmail.com</div>
+          </div>
+          <div class="arr">→</div>
+        </a>
+        <a class="ctt linkedin" href="https://www.linkedin.com/in/woody-zhao/" target="_blank" rel="noopener">
+          <div>
+            <div class="lab">02 · LinkedIn</div>
+            <div class="val">in / woody-zhao</div>
+          </div>
+          <div class="arr">↗</div>
+        </a>
+        <a class="ctt github" href="https://github.com/Woodz-ZZW" target="_blank" rel="noopener">
+          <div>
+            <div class="lab">03 · GitHub</div>
+            <div class="val">@Woodz-ZZW</div>
+          </div>
+          <div class="arr">↗</div>
+        </a>
+        <a class="ctt" href="#top">
+          <div>
+            <div class="lab">04 · Back to top</div>
+            <div class="val">趙 鄭 武</div>
+          </div>
+          <div class="arr">↑</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========  FOOTER  ========== -->
+  <footer>
+    <div>© MMXXVI · Woody Zhao · All rights reserved</div>
+    <div>Hand-set in <span class="heart">♥</span> Archivo Black &amp; Instrument Serif</div>
+    <div>v 2.0 — Waterloo Edition</div>
+  </footer>
+
+</div>
+
+<script>
+  // intersection reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
