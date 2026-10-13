@@ -411,6 +411,7 @@ a{color:inherit;text-decoration:none}
 .proj.span-3{grid-column:span 3}
 .proj.span-4{grid-column:span 4}
 @media(max-width:1100px){.proj.featured,.proj.span-4{grid-column:span 4}.proj.span-3{grid-column:span 2}}
+@media(min-width:761px) and (max-width:1100px){.proj.span-4{grid-column:span 2}.projects .proj:last-child{grid-column:span 4}}
 @media(max-width:760px){.proj.featured,.proj.span-4,.proj.span-3,.proj.span-2{grid-column:span 2}}
 
 .proj .top{display:flex;justify-content:space-between;align-items:flex-start}
@@ -906,28 +907,46 @@ footer .heart{color:var(--red)}
         </div>
       </a>
 
-      <!-- Personal website (this one!) -->
-      <div class="proj span-3 reveal d1">
+      <!-- RepoLens -->
+      <a class="proj span-2 reveal d1" href="https://github.com/Woodz-ZZW/repolens" target="_blank" rel="noopener">
         <div class="top">
           <span class="num">No. 02</span>
-          <span class="live"><i></i> You are here</span>
+          <span class="live"><i></i> Public on GitHub</span>
         </div>
-        <h3>This <span class="uline">Site</span> <span class="ital">— vibe-coding</span></h3>
+        <h3>Repo<span class="uline">Lens</span></h3>
         <p class="desc">
-          A neo-brutalist personal site, vibe-coded end-to-end. No frameworks,
-          no templates, no Inter. Type set in Archivo Black + Instrument
-          Serif; remixed from a reference design and built by feel.
+          A Python agent that diagnoses issues in local code repositories.
+          It searches and reads files, checks cited code against the source,
+          then returns a root-cause hypothesis, fix direction, and verification steps.
         </p>
         <div class="tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Design</span><span class="tag">No-Framework</span>
+          <span class="tag">Python</span><span class="tag">AI Agent</span><span class="tag">FastAPI</span>
         </div>
-        <div class="meta"><span>2026 · SOLO</span><span class="go">↻ live</span></div>
-      </div>
+        <div class="meta"><span>CLI · WEB DEMO</span><span class="go">View repo →</span></div>
+      </a>
 
-      <!-- Self-study journey framed as a project -->
-      <div class="proj span-3 reveal d2">
+      <!-- C++ heat-diffusion solver -->
+      <a class="proj span-3 reveal d2" href="https://github.com/UWHPC/onboarding-template/pull/51" target="_blank" rel="noopener">
         <div class="top">
           <span class="num">No. 03</span>
+          <span class="live"><i></i> Code on GitHub</span>
+        </div>
+        <h3>C++ <span class="uline">Heat-Diffusion</span> <span class="ital">Solver</span></h3>
+        <p class="desc">
+          A C++17 2D heat-diffusion solver with contiguous grid storage and a
+          boundary-preserving five-point stencil. It traverses rows for
+          locality, uses OpenMP for parallel updates, and checks correctness with CTest.
+        </p>
+        <div class="tags">
+          <span class="tag">C++17</span><span class="tag">OpenMP</span><span class="tag">CTest</span>
+        </div>
+        <div class="meta"><span>UWHPC PR</span><span class="go">View code →</span></div>
+      </a>
+
+      <!-- Self-study journey framed as a project -->
+      <div class="proj span-3 reveal d3">
+        <div class="top">
+          <span class="num">No. 04</span>
           <span class="live"><i></i> Shipped</span>
         </div>
         <h3>Six <span class="uline">APs</span>, <span class="ital">no</span> classroom</h3>
@@ -945,9 +964,9 @@ footer .heart{color:var(--red)}
       </div>
 
       <!-- Real community project -->
-      <div class="proj span-4 reveal d3">
+      <div class="proj span-4 reveal d4">
         <div class="top">
-          <span class="num">No. 04</span>
+          <span class="num">No. 05</span>
           <span class="live"><i></i> Ongoing · Real-world</span>
         </div>
         <h3>BE YOU <span class="ital">T.H.R.I.V.E</span> <span class="uline">Fundraiser</span></h3>
@@ -966,9 +985,9 @@ footer .heart{color:var(--red)}
       </div>
 
       <!-- UBC Geering Up -->
-      <div class="proj span-2 reveal d4">
+      <div class="proj span-2 reveal d5">
         <div class="top">
-          <span class="num">No. 05</span>
+          <span class="num">No. 06</span>
           <span class="live"><i></i> Aug 2025</span>
         </div>
         <h3><span class="ital">Mini</span>minds</h3>
@@ -1252,3 +1271,4 @@ footer .heart{color:var(--red)}
 </script>
 </body>
 </html>
+
